@@ -71,9 +71,9 @@ class MLP:
         for batch in self.test.as_numpy_iterator():
             X, y = batch
             yhat = model.predict(X)
-            pre.update_state(yhat, y)
-            re.update_state(yhat, y)
-            acc.update_state(yhat, y)
+            pre.update_state(y, yhat)
+            re.update_state(y, yhat)
+            acc.update_state(y, yhat)
             
         self.precision = pre.result().numpy()
         self.recall = re.result().numpy()

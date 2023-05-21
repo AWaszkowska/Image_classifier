@@ -61,7 +61,7 @@ class Test_model:
         output_data = np.column_stack((f_names, predicted_classes.astype(int)))
         header = np.array(['number', 'class'])  # Column names
         output_data = np.vstack((header, output_data))  # Add the header to the top
-        np.savetxt('/home/amelia97/Documents/Python/aml/AML-2023-Project2_alunos/prject_two/prediction_mlp.csv', output_data, delimiter=',', fmt=('%s', '%s'))
+        np.savetxt('/home/amelia97/Documents/Python/aml/AML-2023-Project2_alunos/prject_two/prediction.csv', output_data, delimiter=',', fmt=('%s', '%s'))
         
         return 
         

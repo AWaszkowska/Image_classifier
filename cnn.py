@@ -45,14 +45,24 @@ class CNN:
         
         model = Sequential()
         
-        model.add(Conv2D(self.num_filt, (3,3), activation='relu', input_shape=(150,150,3), kernel_regularizer=self.kernel_regularizer))
-        model.add(MaxPooling2D(2,2))
-        for i in range(self.num_conv-1):
-            if self.num_filt>16:
-                model.add(Conv2D(self.num_filt, (3,3), activation='relu', kernel_regularizer=self.kernel_regularizer))
-                model.add(MaxPooling2D(2,2))
-                self.num_filt = self.num_filt/2
-        model.add(Flatten())
+        if self.kernel_regularizer is not None:
+            model.add(Conv2D(self.num_filt, (3,3), activation='relu', input_shape=(150,150,3), kernel_regularizer=self.kernel_regularizer))
+            model.add(MaxPooling2D(2,2))
+            for i in range(self.num_conv-1):
+                if self.num_filt>16:
+                    model.add(Conv2D(self.num_filt, (3,3), activation='relu', kernel_regularizer=self.kernel_regularizer))
+                    model.add(MaxPooling2D(2,2))
+                    self.num_filt = self.num_filt/2
+            model.add(Flatten())
+        else:
+            model.add(Conv2D(self.num_filt, (3,3), activation='relu', input_shape=(150,150,3)))
+            model.add(MaxPooling2D(2,2))
+            for i in range(self.num_conv-1):
+                if self.num_filt>16:
+                    model.add(Conv2D(self.num_filt, (3,3), activation='relu'))
+                    model.add(MaxPooling2D(2,2))
+                    self.num_filt = self.num_filt/2
+            model.add(Flatten())
         if (self.num_dense == 1):
             model.add(Dense(256, activation='relu'))
             model.add(Dropout(0.2))
@@ -79,7 +89,7 @@ class CNN:
 
         logdir = 'logs'
         tensorboard_callback = tf.keras.callbacks.TensorBoard(log_dir=logdir)
-        hist = model.fit(train, epochs=3, validation_data=val, callbacks=[tensorboard_callback])
+        hist = model.fit(train, epochs=15, validation_data=val, callbacks=[tensorboard_callback])
         hist.history    
         
         # plot performance

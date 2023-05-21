@@ -2,3 +2,9 @@ Name,Precision,Recall,Accuracy
 mp,1.0,0.16666667,0.0
 Name,Precision,Recall,Accuracy
 mp,1.0,0.16666667,0.0
+Name,Precision,Recall,Accuracy
+adam_l2,"tf.Tensor(0.92371476, shape=(), dtype=float32)","tf.Tensor(0.91611844, shape=(), dtype=float32)","tf.Tensor(0.97341007, shape=(), dtype=float32)"
+Name,Precision,Recall,Accuracy
+adam_none,"tf.Tensor(0.94578815, shape=(), dtype=float32)","tf.Tensor(0.9325658, shape=(), dtype=float32)","tf.Tensor(0.97985196, shape=(), dtype=float32)"
+Name,Precision,Recall,Accuracy
+sgd_l2,"tf.Tensor(0.8072175, shape=(), dtype=float32)","tf.Tensor(0.6990132, shape=(), dtype=float32)","tf.Tensor(0.9220121, shape=(), dtype=float32)"
